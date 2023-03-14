@@ -1,0 +1,106 @@
+{
+  "name": "@geavila/gt-design",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrieldeavila/gt-design.git"
+  },
+  "version": "0.1.10",
+  "description": "A minimalistic design system for React",
+  "homepage": "https://github.com/gabrieldeavila/gt-design",
+  "scripts": {
+    "rollup": "rollup -c",
+    "test": "jest",
+    "storybook": "start-storybook -p 6006 -s public",
+    "chromatic": "npx chromatic --project-token=080a8bbe9b98",
+    "build-storybook": "build-storybook -s public",
+    "serve-storybook": "serve storybook-static"
+  },
+  "lint": "eslint .",
+  "author": {
+    "name": "gabrieldeavila"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-react": "^7.16.0",
+    "@babel/preset-typescript": "^7.16.0",
+    "@mdx-js/react": "^2.1.2",
+    "@rollup/plugin-babel": "^6.0.2",
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^13.0.6",
+    "@rollup/plugin-typescript": "^8.3.0",
+    "@storybook/addon-actions": "^6.5.9",
+    "@storybook/addon-essentials": "^6.5.9",
+    "@storybook/addon-links": "^6.5.9",
+    "@storybook/builder-webpack5": "^6.5.9",
+    "@storybook/manager-webpack5": "^6.5.9",
+    "@storybook/preset-scss": "^1.0.3",
+    "@storybook/react": "^6.5.9",
+    "@testing-library/react": "^13.3.0",
+    "@types/jest": "^28.1.6",
+    "@types/react": "^18.0.28",
+    "@types/styled-components": "^5.1.26",
+    "@types/styled-system": "^5.1.15",
+    "@typescript-eslint/eslint-plugin": "^5.44.0",
+    "@typescript-eslint/parser": "^5.42.1",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^27.3.1",
+    "babel-loader": "^8.2.3",
+    "chromatic": "^6.17.1",
+    "eslint": "^8.28.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-config-xo": "^0.43.1",
+    "eslint-config-xo-typescript": "^0.54.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^27.1.5",
+    "eslint-plugin-n": "^15.5.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "html-webpack-plugin": "^5.5.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^28.1.3",
+    "prettier": "^2.8.0",
+    "rollup": "^2.79.1",
+    "rollup-plugin-dts": "^4.0.1",
+    "rollup-plugin-postcss": "^4.0.1",
+    "sass": "^1.43.5",
+    "sass-loader": "^12.3.0",
+    "storybook-dark-mode": "^2.0.5",
+    "style-loader": "^3.3.1",
+    "typescript": "^4.9.3"
+  },
+  "main": "dist/esm/index.js",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "lodash": "^4.17.21"
+  },
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "react",
+    "state",
+    "react-trigger-state",
+    "react-state",
+    "react-component"
+  ],
+  "bugs": {
+    "url": "https://github.com/gabrieldeavila/gt-design/issues"
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "@geavila/gt-design@0.1.10",
+  "dependencies": {
+    "date-fns": "^2.29.3",
+    "react-datepicker": "^4.10.0"
+  }
+}
