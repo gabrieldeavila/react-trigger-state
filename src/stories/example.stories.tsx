@@ -7,7 +7,10 @@ export default {
 };
 
 const Template: React.FC = () => {
-  const [state, setState] = useTriggerState({ name: "example", initial: "KKKKKKKKKKKKK" });
+  const [state, setState] = useTriggerState({
+    name: "example",
+    initial: "Try Changing This And Refreshing The Page!!",
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setState(e.target.value);
@@ -19,9 +22,6 @@ const Template: React.FC = () => {
       <br />
       <br />
       <input value={state} onChange={handleChange} />
-      <br />
-      <br />
-      <br />
       <br />
       <br />
       <Child />
@@ -38,11 +38,13 @@ const Child: React.FC = () => {
 
   return (
     <div>
-      This is the value in the freaking child!!! look at it!!!
-      <br />
-      here:
-      <br />
-      {state}
+      <i>
+        This is the value in the freaking child!!! look at it!!!
+        <br />
+        here:
+        <br />
+      </i>
+      <strong>{state}</strong>
     </div>
   );
 };

@@ -5,6 +5,8 @@ const sessionState = (initial: any, name: string) => {
 
   if (value != null) {
     return JSON.parse(value);
+  } else {
+    sessionStorage.setItem(name, JSON.stringify(initial));
   }
 
   return initial;
