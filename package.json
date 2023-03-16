@@ -7,7 +7,7 @@
     "type": "git",
     "url": "git+https://github.com/gabrieldeavila/react-trigger-state.git"
   },
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A minimalistic design system for React",
   "homepage": "https://github.com/gabrieldeavila/react-trigger-state",
   "scripts": {
@@ -98,9 +98,5 @@
     "url": "https://github.com/gabrieldeavilareact-trigger-state/issues"
   },
   "readme": "ERROR: No README data found!",
-  "_id": "@geavila/react-trigger-state@0.0.1",
-  "dependencies": {
-    "date-fns": "^2.29.3",
-    "react-datepicker": "^4.10.0"
-  }
+  "_id": "@geavila/react-trigger-state@0.0.1"
 }
