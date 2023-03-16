@@ -13,7 +13,7 @@
   "scripts": {
     "rollup": "rollup -c",
     "test": "jest",
-    "storybook": "start-storybook -p 6006 -s public",
+    "storybook": "start-storybook -p 6007 -s public",
     "build-storybook": "build-storybook -s public",
     "serve-storybook": "serve storybook-static",
     "chromatic": "npx chromatic --project-token=d57e187091b8"
