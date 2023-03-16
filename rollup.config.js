@@ -4,6 +4,7 @@ import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
 import dts from "rollup-plugin-dts";
 import babel from "rollup-plugin-babel";
+import { uglify } from "rollup-plugin-uglify";
 
 const packageJson = require("./package.json");
 
@@ -15,11 +16,13 @@ export default [
         file: packageJson.main,
         format: "cjs",
         sourcemap: true,
+        sourcemapExcludeSources: true, // This is optional, but recommended for security reasons
       },
       {
         file: packageJson.module,
         format: "esm",
         sourcemap: true,
+        sourcemapExcludeSources: true, // This is optional, but recommended for security reasons
       },
     ],
     external: ["react", "react-dom", "lodash"],
@@ -31,6 +34,7 @@ export default [
       babel({
         presets: ["@babel/preset-env"],
       }),
+      uglify(),
     ],
   },
   {
