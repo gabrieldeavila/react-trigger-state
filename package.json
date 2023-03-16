@@ -1,15 +1,15 @@
 {
-  "name": "@geavila/gt-design",
+  "name": "@geavila/react-trigger-state",
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gabrieldeavila/gt-design.git"
+    "url": "git+https://github.com/gabrieldeavila/react-trigger-state.git"
   },
-  "version": "0.1.10",
+  "version": "0.0.1",
   "description": "A minimalistic design system for React",
-  "homepage": "https://github.com/gabrieldeavila/gt-design",
+  "homepage": "https://github.com/gabrieldeavila/react-trigger-state",
   "scripts": {
     "rollup": "rollup -c",
     "test": "jest",
@@ -95,10 +95,10 @@
     "react-component"
   ],
   "bugs": {
-    "url": "https://github.com/gabrieldeavila/gt-design/issues"
+    "url": "https://github.com/gabrieldeavilareact-trigger-state/issues"
   },
   "readme": "ERROR: No README data found!",
-  "_id": "@geavila/gt-design@0.1.10",
+  "_id": "@geavila/react-trigger-state@0.0.1",
   "dependencies": {
     "date-fns": "^2.29.3",
     "react-datepicker": "^4.10.0"
