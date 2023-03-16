@@ -3,6 +3,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
 import dts from "rollup-plugin-dts";
+import babel from "rollup-plugin-babel";
 
 const packageJson = require("./package.json");
 
@@ -21,16 +22,15 @@ export default [
         sourcemap: true,
       },
     ],
-    external: [
-      "react",
-      "react-dom",
-      "lodash"
-    ],
+    external: ["react", "react-dom", "lodash"],
     plugins: [
       resolve(),
       commonjs(),
       typescript({ tsconfig: "./tsconfig.json" }),
       postcss(),
+      babel({
+        presets: ["@babel/preset-env"],
+      }),
     ],
   },
   {
