@@ -1,6 +1,7 @@
+import { ITriggerState } from "../interfaces/trigger";
 import addState from "./addState";
 
-const setInitialValue = ({ initial, name }: { initial: any; name: string }) => {
+const setInitialValue = ({ name, initial }: ITriggerState) => {
   // current value (if the value is already setted in another component)
   const value = window.REACT_TRIGGER_STATE?.[name];
 

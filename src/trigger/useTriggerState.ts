@@ -1,14 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import addState from "../helpers/addState";
 import setInitialValue from "../helpers/setInitialValue";
+import { ITriggerState } from "../interfaces/trigger";
 
-declare global {
-  interface Window {
-    REACT_TRIGGER_STATE: Record<string, unknown>;
-  }
-}
-
-function useTriggerState({ name, initial }: { name: string; initial: any }) {
+function useTriggerState({ name, initial }: ITriggerState) {
   // event that will be dispatched
   const event = useRef<CustomEvent<{ [key in string]: any }> | null>(null);
 
