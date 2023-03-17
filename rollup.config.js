@@ -36,6 +36,7 @@ export default [
       }),
       uglify(),
     ],
+    treeshake: true,
   },
   {
     input: "dist/esm/types/src/index.d.ts",
