@@ -1,22 +1,21 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import addState from "../helpers/addState";
+import setInitialValue from "../helpers/setInitialValue";
 
-const sessionState = (initial: any, name: string) => {
-  const value = sessionStorage.getItem(name);
-
-  if (value != null) {
-    return JSON.parse(value);
-  } else {
-    sessionStorage.setItem(name, JSON.stringify(initial));
+declare global {
+  interface Window {
+    REACT_TRIGGER_STATE: Record<string, unknown>;
   }
-
-  return initial;
-};
+}
 
 function useTriggerState({ name, initial }: { name: string; initial: any }) {
+  // event that will be dispatched
   const event = useRef<CustomEvent<{ [key in string]: any }> | null>(null);
 
-  const [state, setState] = useState(sessionState(initial, name));
+  // basic state
+  const [state, setState] = useState(setInitialValue({ initial, name }));
 
+  // useEffect to add and remove the event listener
   useEffect(() => {
     const listener = (ev: any) => {
       const value = ev.detail[name];
@@ -32,6 +31,8 @@ function useTriggerState({ name, initial }: { name: string; initial: any }) {
     };
   }, [name]);
 
+  // it's used to change the value of the state
+  // and dispatch its event
   const trigger = useCallback(
     (value: any) => {
       event.current = new CustomEvent(name, {
@@ -40,7 +41,7 @@ function useTriggerState({ name, initial }: { name: string; initial: any }) {
         },
       });
 
-      sessionStorage.setItem(name, JSON.stringify(value));
+      addState({ name, value });
 
       document.dispatchEvent(event.current);
     },
