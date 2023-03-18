@@ -5,7 +5,7 @@ import { useTriggerFunction } from "../trigger";
 import useGetFunction from "../trigger/function/useGetFunction";
 
 export default {
-  title: "Callback",
+  title: "Function",
 };
 
 const Template: React.FC = () => {
@@ -50,4 +50,4 @@ const Child: React.FC = () => {
     </div>
   );
 };
-export const Callback = Template.bind({});
+export const Function = Template.bind({});

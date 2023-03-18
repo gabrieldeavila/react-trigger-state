@@ -2,15 +2,16 @@
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
 import React from "react";
 import { useTriggerState } from "../trigger";
+import useTriggerRef from "../trigger/useTriggerRef";
 
 export default {
-  title: "Example",
+  title: "Trigger Ref",
 };
 
 const Template: React.FC = () => {
-  const [state, setState] = useTriggerState({
-    name: "example",
-    initial: "Try Changing This And Refreshing The Page!!",
+  const [ref, setRef] = useTriggerRef({
+    name: "ref_ex",
+    initial: "Try Changing This",
   });
 
   const [hide, setHide] = useTriggerState({
@@ -19,7 +20,7 @@ const Template: React.FC = () => {
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setState(e.target.value);
+    setRef(e.target.value);
   };
 
   return (
@@ -27,8 +28,11 @@ const Template: React.FC = () => {
       <br />
       <br />
       <br />
-      <input value={state} onChange={handleChange} />
+      <input onChange={handleChange} />
       <br />
+      <p>
+        value: <strong>{ref.current}</strong>
+      </p>
       <br />
 
       <label htmlFor="check">Show / hide </label>
@@ -47,16 +51,20 @@ const Template: React.FC = () => {
 };
 
 const Child: React.FC = () => {
-  const [state] = useTriggerState({ name: "example", initial: true });
+  const [ref] = useTriggerRef({ name: "ref_ex", initial: true });
+
+  const getRef = () => {
+    console.log(ref.current);
+    alert(ref.current);
+  };
 
   return (
     <div>
-      <i>this is the children&#39;s value:</i>
-      <br />
-      <br />
-      <strong>{state}</strong>
+      <button onClick={getRef}>
+        <i>click here to get the children&#39;s value</i>
+      </button>
     </div>
   );
 };
 
-export const Example = Template.bind({});
+export const TriggerRef = Template.bind({});
