@@ -11,7 +11,7 @@ export default {
 const Template: React.FC = () => {
   const [ref, setRef] = useTriggerRef({
     name: "ref_ex",
-    initial: "Try Changing This",
+    initial: {},
   });
 
   const [hide, setHide] = useTriggerState({
@@ -20,7 +20,9 @@ const Template: React.FC = () => {
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setRef(e.target.value);
+    ref.current[e.target.name] = e.target.value;
+
+    setRef(ref.current);
   };
 
   return (
@@ -28,13 +30,13 @@ const Template: React.FC = () => {
       <br />
       <br />
       <br />
-      <input onChange={handleChange} />
+      Name:
+      <input onChange={handleChange} name="name" />
       <br />
-      <p>
-        value: <strong>{ref.current}</strong>
-      </p>
+      Email:
+      <input onChange={handleChange} type="email" name="email" />
       <br />
-
+      <br />
       <label htmlFor="check">Show / hide </label>
       <input
         id="check"
@@ -44,7 +46,6 @@ const Template: React.FC = () => {
       />
       <br />
       <br />
-
       {!hide && <Child />}
     </center>
   );
@@ -55,13 +56,13 @@ const Child: React.FC = () => {
 
   const getRef = () => {
     console.log(ref.current);
-    alert(ref.current);
+    alert(JSON.stringify(ref.current));
   };
 
   return (
     <div>
       <button onClick={getRef}>
-        <i>click here to get the children&#39;s value</i>
+        <i>click here to get the ref&#39;s value</i>
       </button>
     </div>
   );
