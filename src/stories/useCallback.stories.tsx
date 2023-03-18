@@ -1,55 +1,53 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
-import React from "react";
-import { useTriggerState } from "../trigger";
-import useTriggerCallback from "../trigger/useTriggerFunctions";
+import React, { useCallback, useState } from "react";
+import { useTriggerFunction } from "../trigger";
+import useGetFunction from "../trigger/function/useGetFunction";
 
 export default {
   title: "Callback",
 };
 
 const Template: React.FC = () => {
-  const [state, setState] = useTriggerCallback(() => {}, []);
+  // im not using the trigger state here because i want to show you how to use the callback
+  // and it is not necessary to use the trigger state here
+  const [state, setState] = useState("Type here to change the value");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setState(e.target.value);
-  };
+  const test = useCallback(() => {
+    console.log(state);
+    alert(state);
+  }, [state]);
+
+  useTriggerFunction({
+    name: "test",
+    share: test,
+  });
 
   return (
     <center>
       <br />
       <br />
+      <i>this is the father</i>
       <br />
-      <input value={state} onChange={handleChange} />
-      <br />
-      <br />
-
-      <label htmlFor="check">Show / hide </label>
-      <input
-        id="check"
-        type="checkbox"
-        checked={hide}
-        onChange={() => setHide((prev: boolean) => !prev)}
-      />
+      <input value={state} onChange={(e) => setState(e.target.value)} />
       <br />
       <br />
-
-      {!hide && <Child />}
+      <br />
+      <br />
+      <Child />
     </center>
   );
 };
 
 const Child: React.FC = () => {
-  const [state] = useTriggerState({ name: "example", initial: true });
+  const test = useGetFunction({ name: "test" });
 
   return (
     <div>
-      <i>this is the children&#39;s value:</i>
+      <i>this is the children</i>
       <br />
-      <br />
-      <strong>{state}</strong>
+      <button onClick={test}>Click to get the value of the parent</button>
     </div>
   );
 };
-
 export const Callback = Template.bind({});

@@ -3,7 +3,10 @@ import addState from "../helpers/addState";
 import setInitialValue from "../helpers/setInitialValue";
 import { ITriggerState } from "../interfaces/trigger";
 
-function useTriggerState({ name, initial }: ITriggerState) {
+function useTriggerState({
+  name,
+  initial,
+}: ITriggerState): [any, (value: any) => void] {
   // event that will be dispatched
   const event = useRef<CustomEvent<{ [key in string]: any }> | null>(null);
 
