@@ -71,7 +71,7 @@ function useTriggerState({
         },
       });
 
-      addState({ name, value });
+      addState({ name, value: newValue });
 
       document.dispatchEvent(event.current);
     },
