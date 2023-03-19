@@ -1,12 +1,17 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import addState from "../helpers/addState";
 import setInitialValue from "../helpers/setInitialValue";
-import { ITriggerState } from "../interfaces/trigger";
 
+/**
+ * Returns a state and a trigger function to change it throughout the application
+ */
 function useTriggerState({
   name,
   initial,
-}: ITriggerState): [any, (value: any) => void] {
+}: {
+  name: string;
+  initial?: any;
+}): [any, (value: any) => void] {
   // event that will be dispatched
   const event = useRef<CustomEvent<{ [key in string]: any }> | null>(null);
 

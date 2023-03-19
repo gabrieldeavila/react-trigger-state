@@ -1,12 +1,21 @@
 import { useCallback, useEffect, useRef } from "react";
 import addState from "../helpers/addState";
 import setInitialValue from "../helpers/setInitialValue";
-import { ITriggerState } from "../interfaces/trigger";
 
+/**
+ * Returns the ref and a trigger function to change it throughout the application
+ *
+ * If you don't use the trigger function, all of the components that use this state will not be updated
+ *
+ * Therefore, always use the trigger function to change the ref value
+ */
 function useTriggerRef({
   name,
   initial,
-}: ITriggerState): [any, (value: any) => void] {
+}: {
+  name: string;
+  initial?: any;
+}): [any, (value: any) => void] {
   // event that will be dispatched
   const event = useRef<CustomEvent<{ [key in string]: any }> | null>(null);
 

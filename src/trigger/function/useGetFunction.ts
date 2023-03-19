@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import setInitialValue from "../../helpers/setInitialValue";
 
-type TFunction = () => void;
-
-const useGetFunction = ({ name }: { name: string }): TFunction => {
+/**
+ * Returns a function that was dispatched by the useTriggerFunction hook
+ */
+const useGetFunction = ({ name }: { name: string }): (() => void) => {
   const [state, setState] = useState(() =>
     setInitialValue({ initial: () => {}, name })
   );

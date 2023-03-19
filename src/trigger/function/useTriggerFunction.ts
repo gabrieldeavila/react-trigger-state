@@ -1,6 +1,11 @@
 import { useEffect, useRef } from "react";
 import addState from "../../helpers/addState";
 
+/**
+ * Creates a function that can be used in other components
+ *
+ * To do so, you need to use the useGetFunction hook
+ */
 const useTriggerFunction = ({
   name,
   share,
