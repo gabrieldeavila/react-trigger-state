@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useRef } from "react";
-import addState from "../helpers/addState";
-import setInitialValue from "../helpers/setInitialValue";
+import { useCallback, useRef } from "react";
+import setInitialValue from "../../helpers/setInitialValue";
+import useTrigger from "./useTrigger";
 
 /**
  * Returns the ref and a trigger function to change it throughout the application
@@ -33,44 +33,19 @@ function useTriggerRef({
   name: string;
   initial?: any;
 }): [any, (value: any) => void] {
-  // event that will be dispatched
-  const event = useRef<CustomEvent<{ [key in string]: any }> | null>(null);
-
   // basic state
   const ref = useRef(setInitialValue({ initial, name }));
 
-  // useEffect to add and remove the event listener
-  useEffect(() => {
-    const listener = (ev: any) => {
+  // it's used to get the changes of the state
+  const listener = useCallback(
+    (ev: any) => {
       const value = ev.detail[name];
       ref.current = value;
-    };
-
-    // add event listener for the event
-    document.addEventListener(name, listener);
-
-    return () => {
-      // remove event listener for the event
-      document.removeEventListener(name, listener);
-    };
-  }, [name]);
-
-  // it's used to change the value of the state
-  // and dispatch its event
-  const trigger = useCallback(
-    (value: any) => {
-      event.current = new CustomEvent(name, {
-        detail: {
-          [name]: value,
-        },
-      });
-
-      addState({ name, value });
-
-      document.dispatchEvent(event.current);
     },
     [name]
   );
+
+  const { trigger } = useTrigger({ name, listener });
 
   return [ref, trigger];
 }

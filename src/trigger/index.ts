@@ -1,3 +1,3 @@
-export { default as useTriggerState } from "./useTriggerState";
+export { default as useTriggerState } from "./data/useTriggerState";
 
 export * from "./function";

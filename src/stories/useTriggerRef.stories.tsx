@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
 import React from "react";
 import { useTriggerState } from "../trigger";
-import useTriggerRef from "../trigger/useTriggerRef";
+import useTriggerRef from "../trigger/data/useTriggerRef";
 
 export default {
   title: "Trigger Ref",
@@ -14,6 +14,11 @@ const Template: React.FC = () => {
     initial: {},
   });
 
+  const [value, setValue] = useTriggerRef({
+    name: "value",
+    initial: {},
+  });
+
   const [hide, setHide] = useTriggerState({
     name: "hide",
     initial: false,
@@ -21,7 +26,7 @@ const Template: React.FC = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     ref.current[e.target.name] = e.target.value;
-
+    setValue((prev: any) => ({ ...prev, [e.target.name]: e.target.value }));
     setRef(ref.current);
   };
 
@@ -31,10 +36,15 @@ const Template: React.FC = () => {
       <br />
       <br />
       Name:
-      <input onChange={handleChange} name="name" />
+      <input value={value.name} onChange={handleChange} name="name" />
       <br />
       Email:
-      <input onChange={handleChange} type="email" name="email" />
+      <input
+        value={value.email}
+        onChange={handleChange}
+        type="email"
+        name="email"
+      />
       <br />
       <br />
       <label htmlFor="check">Show / hide </label>
