@@ -1,6 +1,6 @@
 export interface ITriggerState {
   name: string;
-  initial: any;
+  initial?: any;
 }
 
 export interface ITriggerChangeState {
