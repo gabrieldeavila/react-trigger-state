@@ -8,6 +8,23 @@ import setInitialValue from "../helpers/setInitialValue";
  * If you don't use the trigger function, all of the components that use this state will not be updated
  *
  * Therefore, always use the trigger function to change the ref value
+ *
+ * @example
+ * // name is the value that will be used to identify the state
+ * // so it must be unique
+ * const [ref, trigger] = useTriggerRef({ name: "myRef", initial: "0" });
+ *
+ * // to change its value
+ * trigger("1");
+ *
+ * // to get its value
+ * console.log(ref.current);
+ *
+ * // to get its value in another component
+ * const [ref, trigger] = useTriggerRef({ name: "myRef" });
+ *
+ * // now if anywhere in the application you change the value of the ref
+ * // all of the components that use it will be updated
  */
 function useTriggerRef({
   name,
