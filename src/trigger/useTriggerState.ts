@@ -4,6 +4,23 @@ import setInitialValue from "../helpers/setInitialValue";
 
 /**
  * Returns a state and a trigger function to change it throughout the application
+ *
+ * @example
+ * // name is the value that will be used to identify the state
+ * // so it must be unique
+ * const [state, trigger] = useTriggerState({ name: "myState", initial: "0" });
+ *
+ * // to change its value
+ * trigger("1");
+ *
+ * // to get its value
+ * console.log(state);
+ *
+ * // to get its value in another component
+ * const [state, trigger] = useTriggerState({ name: "myState" });
+ *
+ * // now if anywhere in the application you change the value of the state
+ * // all of the components that use it will be updated
  */
 function useTriggerState({
   name,
@@ -37,10 +54,20 @@ function useTriggerState({
   // it's used to change the value of the state
   // and dispatch its event
   const trigger = useCallback(
-    (value: any) => {
+    async (value: any) => {
+      await setState(value);
+
+      let newValue = value;
+
+      await setState((prev: any) => {
+        newValue = prev;
+
+        return prev;
+      });
+
       event.current = new CustomEvent(name, {
         detail: {
-          [name]: value,
+          [name]: newValue,
         },
       });
 
