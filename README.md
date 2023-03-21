@@ -40,42 +40,45 @@
 
 <p align="center">
   <a href="#dart-about">About</a> &#xa0; | &#xa0;
-  <a href="#eyes-see_it_in_action">See it in action</a> &#xa0; | &#xa0;
-  <a href="#crystal_ball-useTriggerState">useTriggerState</a> &#xa0; | &#xa0;
-  <a href="#crystal_ball-useTriggerFunction_and_useGetFunction">useTriggerFunction</a> &#xa0; | &#xa0;
-  <a href="#crystal_ball-useTriggerRef">useTriggerRef</a> &#xa0; | &#xa0;
+  <a href="#eyes-see-it-in-action">See it in action</a> &#xa0; | &#xa0;
+  <a href="#crystal_ball-usetriggerstate">useTriggerState</a> &#xa0; | &#xa0;
+  <a href="#crystal_ball-usetriggerfunction-and-usegetfunction">useTriggerFunction</a> &#xa0; | &#xa0;
+  <a href="#crystal_ball-usetriggerref">useTriggerRef</a> &#xa0; | &#xa0;
   <a href="#inbox_tray-installation">Installation</a> &#xa0; | &#xa0;
-  <a href="#checkered_flag-starting">Starting</a> &#xa0; | &#xa0;
 </p>
 
 ## :dart: About
 
-Tired of passing props down the component tree?
+Tired of passing props down the component tree, aren't you?
 
-Well, that's sucks, right?
+I know that's sucks.
+
+Sometimes you use Redux or Context API, but it's not always the best solution.
+
+Because you need to create a lot of boilerplate code.
+
+Or even worse, you just need to pass a simple value from one component to another.
+
+And that's why I created React Trigger State.
 
 So, with React Trigger State you can trigger state changes from anywhere in your application.
 
-And the best part is that you don't need to use Redux or any other state management library.
-
-Because it's just a simple hook.
-
-And what about if the user goes to another page?
+And what about if the user goes to another page and goes back?
 
 Well, don't worry, because we store the data so you don't need to waste your time!
 
-<!-- to do: create website -->
-<!-- example -->
+Don't believe me?
 
 ## :eyes: See it in action
 
-Also, don't think this is going to be a boring documentation:
+<p>See these stories <a href="https://6411132c8debbccc1a851060-genjkthnwu.chromatic.com/?path=/story/function--function" target="_blank">by clicking here</a></p>
 
-Check these examples [Just click here](https://6411132c8debbccc1a851060-genjkthnwu.chromatic.com/?path=/story/function--function)
+Others example will be provided through the documentation.
 
 ## :crystal_ball: useTriggerState
+This hook makes it possible to trigger state changes from anywhere in the application.
 
-Initial state
+First you need to initialize it:
 
 ```js
 import { useTriggerState } from "react-trigger-state";
@@ -87,7 +90,7 @@ const [state, setState] = useTriggerState({
 });
 ```
 
-Anywhere in the application
+Then, anywhere in the application you can get its value:
 
 ```js
 import { useTriggerState } from "react-trigger-state";
@@ -102,7 +105,15 @@ Yep, that's only it!
 
 And you can use it like a normal state.
 
+Didn't get it?
+Ok, try these CodeSandbox examples:
+
+<p><a href="https://codesandbox.io/s/usetriggerstate-example-js-z3dzlu?file=/src/App.js" target="_blank">For JS lovers 🥰</a></p>
+
+<p><a href="https://codesandbox.io/s/usetriggerstate-basic-example-9ukf2s?file=/src/App.tsx" target="_blank">For TS lovers 🤗</a></p>
+
 ## :crystal_ball: useTriggerFunction and useGetFunction
+It makes it possible to create functions that can be called from anywhere in the application.
 
 First you need to create a function
 
@@ -121,7 +132,7 @@ useTriggerFunction({
 });
 ```
 
-Anywhere in the application
+And anywhere in the application you do this:
 
 ```js
 import { useGetFunction } from "react-trigger-state";
@@ -135,21 +146,26 @@ myFirstFunction();
 
 Wow so magic again!
 
+Is it hard to understand?
+Then try these CodeSandbox examples:
+
+
 ## :crystal_ball: useTriggerRef
 
-Initial ref
+Last but not least, it makes it possible to create refs:
 
+First you need to create a ref, like this:
 ```js
 import { useTriggerRef } from "react-trigger-state";
 
 // in a component
 const [ref, setRef] = useTriggerRef({
   name: "ref_ex",
-  initial: {"--"},
+  initial: "--",
 });
 ```
 
-Anywhere in the application
+And then, anywhere in the application you gotta do this:
 
 ```js
 import { useTriggerRef } from "react-trigger-state";
@@ -163,10 +179,11 @@ function handleClick() {
   setRef("wow, it's magic!");
 }
 ```
+YEP! We don't use ```ref.current = "wow, it's magic!"```
 
-We need to use the setRef to trigger the change, otherwise it won't work.
+Because by doing that, you would not be triggering an event and others components wouldn't get it.
 
-But you can use it like a normal ref.
+But calm down, because it works like a normal ref, therefore, it will not trigger an ```useEffect``` whenever it changes.
 
 ## :inbox_tray: Installation
 

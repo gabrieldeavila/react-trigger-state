@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
 import React from "react";
-import { useTriggerState } from "../trigger";
-import useTriggerRef from "../trigger/data/useTriggerRef";
+import { useTriggerRef, useTriggerState } from "../trigger";
 
 export default {
   title: "Trigger Ref",
