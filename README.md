@@ -41,10 +41,11 @@
 <p align="center">
   <a href="#dart-about">About</a> &#xa0; | &#xa0;
   <a href="#eyes-see-it-in-action">See it in action</a> &#xa0; | &#xa0;
+  <a href="#thinking_face-show-me-how">Show me how</a>&#xa0; | &#xa0;
   <a href="#crystal_ball-usetriggerstate">useTriggerState</a> &#xa0; | &#xa0;
   <a href="#crystal_ball-usetriggerfunction-and-usegetfunction">useTriggerFunction</a> &#xa0; | &#xa0;
   <a href="#crystal_ball-usetriggerref">useTriggerRef</a> &#xa0; | &#xa0;
-  <a href="#inbox_tray-installation">Installation</a> &#xa0; | &#xa0;
+  <a href="#inbox_tray-installation">Installation</a>
 </p>
 
 ## :dart: About
@@ -75,7 +76,15 @@ Don't believe me?
 
 Others example will be provided through the documentation.
 
+## ::thinking_face: Show me how
+Take a look at this diagram:
+
+<img src="https://raw.githubusercontent.com/gabrieldeavila/react-trigger-state/master/public/diagram.png" alt="React Trigger State Diagram" />
+
+So, with React Trigger State, two components can communicate with each other without having a parent-child relationship.
+
 ## :crystal_ball: useTriggerState
+
 This hook makes it possible to trigger state changes from anywhere in the application.
 
 First you need to initialize it:
@@ -90,7 +99,7 @@ const [state, setState] = useTriggerState({
 });
 ```
 
-Then, anywhere in the application you can get its value:
+Then, you can get its value:
 
 ```js
 import { useTriggerState } from "react-trigger-state";
@@ -113,9 +122,10 @@ Ok, try these CodeSandbox examples:
 <p><a href="https://codesandbox.io/s/usetriggerstate-basic-example-9ukf2s?file=/src/App.tsx" target="_blank">For TS lovers 🤗</a></p>
 
 ## :crystal_ball: useTriggerFunction and useGetFunction
-It makes it possible to create functions that can be called from anywhere in the application.
 
-First you need to create a function
+It's possible to create functions that can be called from anywhere in the application.
+
+First you need to create one:
 
 ```js
 import { useTriggerFunction } from "react-trigger-state";
@@ -128,33 +138,34 @@ const myFirstFunction = useCallback(() => {
 
 useTriggerFunction({
   name: "my_first_function",
-  function: myFirstFunction,
+  share: myFirstFunction,
 });
 ```
 
-And anywhere in the application you do this:
+And then you only need to do this:
 
 ```js
 import { useGetFunction } from "react-trigger-state";
 
 // in another component
-const myFirstFunction = useGetFunction("my_first_function");
+const myFirstFunction = useGetFunction({ name: "my_first_function" });
 
 // and then you can call it
 myFirstFunction();
 ```
 
-Wow so magic again!
+Easy, right?
 
-Is it hard to understand?
-Then try these CodeSandbox examples:
+If you found it hard to understand, try this CodeSandbox example:
+<p><a href="https://codesandbox.io/s/blazing-haze-gnb600?file=/src/App.tsx" target="_blank">Click on me</a></p>
 
 
 ## :crystal_ball: useTriggerRef
 
-Last but not least, it makes it possible to create refs:
+Last but not least, let's share a ref between components.
 
-First you need to create a ref, like this:
+First you need to create one, like this:
+
 ```js
 import { useTriggerRef } from "react-trigger-state";
 
@@ -165,7 +176,7 @@ const [ref, setRef] = useTriggerRef({
 });
 ```
 
-And then, anywhere in the application you gotta do this:
+And then, anywhere in the application you should be doing this:
 
 ```js
 import { useTriggerRef } from "react-trigger-state";
@@ -179,11 +190,18 @@ function handleClick() {
   setRef("wow, it's magic!");
 }
 ```
-YEP! We don't use ```ref.current = "wow, it's magic!"```
+
+YEP! We don't use `ref.current = "wow, it's magic!"`
 
 Because by doing that, you would not be triggering an event and others components wouldn't get it.
 
-But calm down, because it works like a normal ref, therefore, it will not trigger an ```useEffect``` whenever it changes.
+But calm down, because it works like a normal ref, therefore, it will not trigger an `useEffect` whenever it changes.
+
+Did you get it?
+
+If you didn't, try this CodeSandbox example:
+
+<p><a href="https://codesandbox.io/s/nice-margulis-6sd0jl?file=/src/App.tsx" target="_blank">Click on me</a></p>
 
 ## :inbox_tray: Installation
 
