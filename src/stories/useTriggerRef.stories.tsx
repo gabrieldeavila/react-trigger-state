@@ -1,78 +1,62 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
 import React from "react";
-import { useTriggerRef, useTriggerState } from "../trigger";
+import { useTriggerRef } from "../trigger";
 
 export default {
   title: "Trigger Ref",
 };
 
 const Template: React.FC = () => {
-  const [ref, setRef] = useTriggerRef({
-    name: "ref_ex",
-    initial: {},
-  });
-
-  const [value, setValue] = useTriggerRef({
-    name: "value",
-    initial: {},
-  });
-
-  const [hide, setHide] = useTriggerState({
-    name: "hide",
-    initial: false,
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    ref.current[e.target.name] = e.target.value;
-    setValue((prev: any) => ({ ...prev, [e.target.name]: e.target.value }));
-    setRef(ref.current);
-  };
-
   return (
     <center>
       <br />
       <br />
       <br />
-      Name:
-      <input value={value.name} onChange={handleChange} name="name" />
-      <br />
-      Email:
-      <input
-        value={value.email}
-        onChange={handleChange}
-        type="email"
-        name="email"
-      />
+
+      <Child />
       <br />
       <br />
-      <label htmlFor="check">Show / hide </label>
-      <input
-        id="check"
-        type="checkbox"
-        checked={hide}
-        onChange={() => setHide((prev: boolean) => !prev)}
-      />
+      <Sibling />
       <br />
       <br />
-      {!hide && <Child />}
     </center>
   );
 };
 
 const Child: React.FC = () => {
-  const [ref] = useTriggerRef({ name: "ref_ex", initial: true });
+  const [, setRef] = useTriggerRef({ name: "ref_ex" });
 
-  const getRef = () => {
-    console.log(ref.current);
-    alert(JSON.stringify(ref.current));
+  const setNewRef = () => {
+    setRef(new Date());
+    alert("Now, try clicking the sibling button!");
   };
 
   return (
-    <div>
-      <button onClick={getRef}>
-        <i>click here to get the ref&#39;s value</i>
+    <div style={{ background: "#e2725b", padding: "2rem" }}>
+      im the child
+      <br />
+      <button onClick={setNewRef}>
+        click here to set a new Ref based in the Date
       </button>
+    </div>
+  );
+};
+
+const Sibling: React.FC = () => {
+  const [ref] = useTriggerRef({ name: "ref_ex" });
+
+  const getRef = () => {
+    if (!ref) return alert("You need to click the child button first!");
+
+    alert(ref);
+  };
+
+  return (
+    <div style={{ background: "green", padding: "2rem" }}>
+      im the sibling
+      <br />
+      <button onClick={getRef}>click here to see the current ref</button>
     </div>
   );
 };

@@ -30,6 +30,7 @@ const useTriggerFunction = ({
         [name]: share,
       },
     });
+    console.log(name, share);
 
     addState({ name, value: share });
 

@@ -8,30 +8,16 @@ export default {
 };
 
 const Template: React.FC = () => {
-  const [state, setState] = useTriggerState({
-    name: "example",
-    initial: "Try Changing This",
-  });
-
   const [hide, setHide] = useTriggerState({
     name: "hide",
     initial: false,
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setState(e.target.value);
-  };
-
   return (
     <center>
       <br />
-      <br />
-      <br />
-      <input value={state} onChange={handleChange} />
-      <br />
-      <br />
 
-      <label htmlFor="check">Show / hide </label>
+      <label htmlFor="check">Show / hide input </label>
       <input
         id="check"
         type="checkbox"
@@ -39,21 +25,39 @@ const Template: React.FC = () => {
         onChange={() => setHide((prev: boolean) => !prev)}
       />
       <br />
-      <br />
-
       {!hide && <Child />}
+
+      <Sibling />
     </center>
   );
 };
 
 const Child: React.FC = () => {
-  const [state] = useTriggerState({ name: "example", initial: true });
+  const [state, setState] = useTriggerState({
+    name: "example",
+    initial: "Try Changing This",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setState(e.target.value);
+  };
 
   return (
     <div>
-      <i>this is the children&#39;s value:</i>
       <br />
+      <input value={state} onChange={handleChange} />
       <br />
+    </div>
+  );
+};
+
+const Sibling: React.FC = () => {
+  const [state] = useTriggerState({ name: "example" });
+
+  return (
+    <div>
+      <br />
+      sibling value:
       <strong>{state}</strong>
     </div>
   );

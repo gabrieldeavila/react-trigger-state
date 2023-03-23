@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import { useTriggerFunction } from "../trigger";
 import useGetFunction from "../trigger/function/useGetFunction";
 
@@ -9,44 +9,41 @@ export default {
 };
 
 const Template: React.FC = () => {
-  // im not using the trigger state here because i want to show you how to use the callback
-  // and it is not necessary to use the trigger state here
-  const [state, setState] = useState("Type here to change the value");
-
-  const test = useCallback(() => {
-    console.log(state);
-    alert(state);
-  }, [state]);
-
-  useTriggerFunction({
-    name: "test",
-    share: test,
-  });
-
   return (
     <center>
       <br />
       <br />
-      <i>this is the father</i>
-      <br />
-      <input value={state} onChange={(e) => setState(e.target.value)} />
-      <br />
-      <br />
-      <br />
       <br />
       <Child />
+      <Sibling />
     </center>
   );
 };
 
 const Child: React.FC = () => {
-  const test = useGetFunction({ name: "test" });
+  const myFirstFunction = useCallback(() => {
+    // your complex logic here
+    alert("wow, im a function!");
+  }, []);
+
+  useTriggerFunction({
+    name: "my_first_function",
+    share: myFirstFunction,
+  });
+
+  return <div className="App">yep im the child</div>;
+};
+
+const Sibling: React.FC = () => {
+  const myFirstFunction = useGetFunction({ name: "my_first_function" });
 
   return (
-    <div>
-      <i>this is the children</i>
+    <div className="App">
+      <p>Wow thats magic!</p>
+      <button onClick={myFirstFunction}>
+        Click me to access my sibling function!
+      </button>
       <br />
-      <button onClick={test}>Click to get the value of the parent</button>
     </div>
   );
 };
