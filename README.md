@@ -72,11 +72,11 @@ Don't believe me?
 
 ## :eyes: See it in action
 
-<p>See these stories <a href="https://6411132c8debbccc1a851060-genjkthnwu.chromatic.com/?path=/story/function--function" target="_blank">by clicking here</a></p>
+<p>See these stories <a href="https://6411132c8debbccc1a851060-nlposxqaxb.chromatic.com/?path=/story/trigger-ref--trigger-ref" target="_blank">by clicking here</a></p>
 
 Others example will be provided through the documentation.
 
-## :thinking_face: Show me how
+## :thinking: Show me how
 Take a look at this diagram:
 
 <img src="https://raw.githubusercontent.com/gabrieldeavila/react-trigger-state/master/public/diagram.png" alt="React Trigger State Diagram" />
@@ -201,7 +201,7 @@ Did you get it?
 
 If you didn't, try this CodeSandbox example:
 
-<p><a href="https://codesandbox.io/s/nice-margulis-6sd0jl?file=/src/App.tsx" target="_blank">Click on me</a></p>
+<p><a href="https://codesandbox.io/s/usetriggerref-6sd0jl?file=/src/App.tsx" target="_blank">Click on me</a></p>
 
 ## :inbox_tray: Installation
 
