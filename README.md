@@ -76,7 +76,7 @@ Don't believe me?
 
 Others example will be provided through the documentation.
 
-## ::thinking_face: Show me how
+## :thinking_face: Show me how
 Take a look at this diagram:
 
 <img src="https://raw.githubusercontent.com/gabrieldeavila/react-trigger-state/master/public/diagram.png" alt="React Trigger State Diagram" />
