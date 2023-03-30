@@ -72,7 +72,7 @@ Don't believe me?
 
 <p>See these stories <a href="https://6411132c8debbccc1a851060-nlposxqaxb.chromatic.com/?path=/story/trigger-ref--trigger-ref" target="_blank">by clicking here</a></p>
 
-Others example will be provided through the documentation.
+Others example will be provided throughout the documentation.
 
 ## :thinking: Show me how
 
