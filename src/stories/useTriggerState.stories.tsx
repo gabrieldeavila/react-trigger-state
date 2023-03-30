@@ -34,7 +34,7 @@ const Template: React.FC = () => {
 
 const Child: React.FC = () => {
   const [state, setState] = useTriggerState({
-    name: "example",
+    name: "state_example",
     initial: "Try Changing This",
   });
 
@@ -52,7 +52,7 @@ const Child: React.FC = () => {
 };
 
 const Sibling: React.FC = () => {
-  const [state] = useTriggerState({ name: "example" });
+  const [state] = useTriggerState({ name: "state_example" });
 
   return (
     <div>
