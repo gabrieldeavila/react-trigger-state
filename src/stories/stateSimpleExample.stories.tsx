@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
 import React from "react";
-import { useTriggerRef } from "../trigger";
+import { useTriggerState } from "../trigger";
 
 export default {
-  title: "Trigger Ref",
+  title: "Simple Example State",
 };
 
 const Template: React.FC = () => {
@@ -25,31 +25,30 @@ const Template: React.FC = () => {
 };
 
 const Child: React.FC = () => {
-  const [, setRef] = useTriggerRef({ name: "ref_ex" });
+  const [, setState] = useTriggerState({ name: "example" });
 
-  const setNewRef = () => {
-    setRef(new Date());
-    alert("Now, try clicking the sibling button!");
+  const handleChange = () => {
+    setState(new Date());
+    alert("Value setted! Try clicking in the sibling button!");
   };
 
   return (
     <div style={{ background: "#e2725b", padding: "2rem" }}>
       im the child
       <br />
-      <button onClick={setNewRef}>
-        click here to set a new Ref based in the Date
+      <button onClick={handleChange}>
+        click here to set the current date
       </button>
     </div>
   );
 };
 
 const Sibling: React.FC = () => {
-  const [ref] = useTriggerRef({ name: "ref_ex" });
+  const [state] = useTriggerState({ name: "example" });
 
   const getRef = () => {
-    if (!ref) return alert("You need to click the child button first!");
-
-    alert(ref);
+    if (!state) return alert("You need to click the child button first!");
+    alert(state);
   };
 
   return (
@@ -61,4 +60,4 @@ const Sibling: React.FC = () => {
   );
 };
 
-export const TriggerRef = Template.bind({});
+export const SimpleExampleState = Template.bind({});
