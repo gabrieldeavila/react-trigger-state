@@ -36,9 +36,7 @@ const Child: React.FC = () => {
     <div style={{ background: "#e2725b", padding: "2rem" }}>
       im the child
       <br />
-      <button onClick={handleChange}>
-        click here to set the current date
-      </button>
+      <button onClick={handleChange}>click here to set the current date</button>
     </div>
   );
 };

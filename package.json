@@ -7,7 +7,7 @@
     "type": "git",
     "url": "git+https://github.com/gabrieldeavila/react-trigger-state.git"
   },
-  "version": "0.0.9",
+  "version": "1.0.3",
   "description": "A lightweight React hook to trigger state changes",
   "homepage": "https://github.com/gabrieldeavila/react-trigger-state",
   "scripts": {
@@ -83,9 +83,10 @@
     "webpack": "^5.76.2",
     "webpack-cli": "^5.0.1"
   },
-  "main": "dist/esm/index.js",
+  "main": "dist/csj/index.js",
   "module": "dist/esm/index.js",
   "files": [
+    "README.md",
     "dist"
   ],
   "peerDependencies": {

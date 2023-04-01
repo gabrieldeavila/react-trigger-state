@@ -39,6 +39,12 @@ function useTriggerState({ name, initial }: { name: string; initial?: any }) {
   // set the value of the trigger
   const setState = useCallback(
     (value: any) => {
+      // if is a function the user wants to update the value
+      // like setState((prev) => prev + 1)
+      if (typeof value === "function") {
+        value = value(triggers[name]);
+      }
+
       triggers = {
         ...triggers,
         [name]: value,

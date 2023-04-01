@@ -15,13 +15,14 @@
     "strictNullChecks": true,
     "jsx": "react",
     "declaration": true,
+    "declarationDir": "types",
     "emitDeclarationOnly": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "baseUrl": ".",
     "outDir": "dist",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*", "README.md"],
     }
   }
 }
