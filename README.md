@@ -41,7 +41,7 @@
 <p align="center">
   <a href="#dart-about">About</a> &#xa0; | &#xa0;
   <a href="#eyes-see-it-in-action">See it in action</a> &#xa0; | &#xa0;
-  <a href="#thinking_face-show-me-how">Show me how</a>&#xa0; | &#xa0;
+  <a href="#thinking-show-me-how">Show me how</a>&#xa0; | &#xa0;
   <a href="#crystal_ball-usetriggerstate">useTriggerState</a> &#xa0; | &#xa0;
   <a href="#inbox_tray-installation">Installation</a>
 </p>
