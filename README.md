@@ -70,7 +70,7 @@ Don't believe me?
 
 ## :eyes: See it in action
 
-<p>See these stories <a href="https://6411132c8debbccc1a851060-nlposxqaxb.chromatic.com/?path=/story/trigger-ref--trigger-ref" target="_blank">by clicking here</a></p>
+<p>See these stories <a href="https://6411132c8debbccc1a851060-ortwhvzvkv.chromatic.com/?path=/story/simple-example-state--simple-example-state" target="_blank">by clicking here</a></p>
 
 Others example will be provided throughout the documentation.
 
