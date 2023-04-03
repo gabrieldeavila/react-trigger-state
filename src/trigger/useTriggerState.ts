@@ -33,8 +33,23 @@ function useTriggerState({ name, initial }: { name: string; initial?: any }) {
     return triggers[name];
   }, [initial, name]);
 
+  const getServerSnaptshot = useCallback(() => {
+    if (triggers[name] == null && initial != null) {
+      triggers = {
+        ...triggers,
+        [name]: initial,
+      };
+    }
+
+    return triggers[name];
+  }, [initial, name]);
+
   // subscribe to changes in the store
-  const state = useSyncExternalStore(subscribe, getSnapshot);
+  const state = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnaptshot
+  );
 
   // set the value of the trigger
   const setState = useCallback(
