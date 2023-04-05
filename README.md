@@ -72,7 +72,7 @@ Don't believe me?
 
 ## :eyes: See it in action
 
-<p>See these stories <a href="https://6411132c8debbccc1a851060-ortwhvzvkv.chromatic.com/?path=/story/simple-example-state--simple-example-state" target="_blank">by clicking here</a></p>
+<p>See these stories <a href="https://6411132c8debbccc1a851060-gwklmuylec.chromatic.com/?path=/story/simple-example-state--simple-example-state" target="_blank">by clicking here</a></p>
 
 Others example will be provided throughout the documentation.
 
@@ -153,6 +153,9 @@ import { globalState } from "react-trigger-state";
 // in another component
 const value = globalState.get("my_first_global_state");
 ```
+To see it in action, take a look at this CodeSandbox example:
+
+<p><a href="https://codesandbox.io/s/useglobalstate-6sd0jl?file=/src/App.tsx" target="_blank">Click here!</a></p>
 
 ## :golfing: stateStorage
 But what if you want the state to be reactive.
@@ -169,25 +172,33 @@ So, if you want to use it, you should use the stateStorage component.
 import { stateStorage } from "react-trigger-state";
 
 // in a component
-stateStorage.set("my_first_state_storage", "Wow, looks like it's magic!");
+stateStorage.set("my_first_state_storage", "put your value here");
 ```
 
 Then, you can get its value:
 
 ```js
-import { stateStorage } from "react-trigger-state";
+import { stateStorage, useTriggerState } from "react-trigger-state";
 
-// in another component
+// in a function, as it will not be reactive
 const value = stateStorage.get("my_first_state_storage");
+
+// or you can use the useTriggerState hook if you want it to be reactive
+const [state, setState] = useTriggerState({
+  name: "my_first_state_storage",
+});
+
 ```
+
+To see it in action, take a look at this CodeSandbox example:
+
+<p><a href="https://codesandbox.io/s/statestorage-gnb600?file=/src/App.tsx" target="_blank">Click here!</a></p>
 
 ## :inbox_tray: Installation
 
-So simple, right?
+If you found this project interesting...
 
-Why don't you try it?
-
-Install it and start using it right now!
+Why not install it and start using it right now?
 
 NPM
 
