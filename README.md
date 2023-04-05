@@ -43,6 +43,8 @@
   <a href="#eyes-see-it-in-action">See it in action</a> &#xa0; | &#xa0;
   <a href="#thinking-show-me-how">Show me how</a>&#xa0; | &#xa0;
   <a href="#crystal_ball-usetriggerstate">useTriggerState</a> &#xa0; | &#xa0;
+  <a href="#surfing_man-globalstate">globalState</a> &#xa0; | &#xa0;
+  <a href="#surfing_man-statestorage">stateStorage</a> &#xa0; | &#xa0;
   <a href="#inbox_tray-installation">Installation</a>
 </p>
 
@@ -119,6 +121,65 @@ Ok, try these CodeSandbox examples:
 <p><a href="https://codesandbox.io/s/usetriggerstate-example-js-z3dzlu?file=/src/App.js" target="_blank">For JS lovers 🥰</a></p>
 
 <p><a href="https://codesandbox.io/s/usetriggerstate-basic-example-9ukf2s?file=/src/App.tsx" target="_blank">For TS lovers 🤗</a></p>
+
+## :surfing_man: GlobalState
+Yep, nice, but what if I don't want to trigger state changes sometimes?
+
+Well, you can use the GlobalState component.
+
+It's a global state that can be accessed from anywhere in the application.
+
+You can create, delete and update it.
+
+And in the next render, all components that use it will be updated.
+
+So you can think of it something like a ref.
+
+Then when you don't want to render the component, you should use the GlobaState component.
+
+
+```js
+import { globalState } from "react-trigger-state";
+
+// in a component
+globalState.set("my_first_global_state", "Wow, looks like it's magic!");
+```
+
+Then, you can get its value:
+
+```js
+import { globalState } from "react-trigger-state";
+
+// in another component
+const value = globalState.get("my_first_global_state");
+```
+
+## :golfing: stateStorage
+But what if you want the state to be reactive.
+
+So, if the user changes the value of the state, it will render all components that use it.
+
+Well, you can use the stateStorage component.
+
+It works like a global state, but it's reactive.
+
+So, if you want to use it, you should use the stateStorage component.
+
+```js
+import { stateStorage } from "react-trigger-state";
+
+// in a component
+stateStorage.set("my_first_state_storage", "Wow, looks like it's magic!");
+```
+
+Then, you can get its value:
+
+```js
+import { stateStorage } from "react-trigger-state";
+
+// in another component
+const value = stateStorage.get("my_first_state_storage");
+```
 
 ## :inbox_tray: Installation
 
