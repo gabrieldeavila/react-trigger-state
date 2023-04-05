@@ -1,19 +1,30 @@
 import { useCallback, useSyncExternalStore } from "react";
 
-let triggers: { [key in string]: any } = {};
-let listeners: any[] = [];
+export const globalState: { [key in string]: any } = new Map();
+const listeners: { [key in string]: any } = new Map();
 
 // it subscribes to the store and returns a function to unsubscribe
-function subscribe(listener: any) {
-  listeners = [...listeners, listener];
+function subscribe(listener: any, name: string) {
+  const prevListeners = listeners.get(name) ?? [];
+
+  listeners.set(name, [...prevListeners, listener]);
+
   return () => {
-    listeners = listeners.filter((l) => l !== listener);
+    const prevListeners = listeners.get(name) ?? [];
+
+    listeners.set(
+      name,
+      prevListeners.filter((l: any) => l !== listener)
+    );
   };
 }
 
 // when a trigger changes, we emit a change event to all listeners
-function emitChange() {
-  for (const listener of listeners) {
+function emitChange(name: string) {
+  // we don't want to emit a change to all listeners, only to the ones that are listening to this trigger
+  const currListeners = listeners.get(name) ?? [];
+
+  for (const listener of currListeners) {
     listener();
   }
 }
@@ -22,31 +33,32 @@ function emitChange() {
 function useTriggerState({ name, initial }: { name: string; initial?: any }) {
   // get the current value of the trigger
   const getSnapshot = useCallback(() => {
-    if (triggers[name] == null && initial != null) {
-      triggers = {
-        ...triggers,
-        [name]: initial,
-      };
-      emitChange();
+    const prevVal = globalState.get(name);
+
+    if (prevVal == null && initial != null) {
+      globalState.set(name, initial);
+      emitChange(name);
     }
 
-    return triggers[name];
+    const newVal = globalState.get(name);
+
+    return newVal;
   }, [initial, name]);
 
   const getServerSnaptshot = useCallback(() => {
-    if (triggers[name] == null && initial != null) {
-      triggers = {
-        ...triggers,
-        [name]: initial,
-      };
+    const prevVal = globalState.get(name);
+
+    if (prevVal == null && initial != null) {
+      globalState.set(name, initial);
     }
 
-    return triggers[name];
+    const newVal = globalState.get(name);
+    return newVal;
   }, [initial, name]);
 
   // subscribe to changes in the store
   const state = useSyncExternalStore(
-    subscribe,
+    (listener: any) => subscribe(listener, name),
     getSnapshot,
     getServerSnaptshot
   );
@@ -57,15 +69,13 @@ function useTriggerState({ name, initial }: { name: string; initial?: any }) {
       // if is a function the user wants to update the value
       // like setState((prev) => prev + 1)
       if (typeof value === "function") {
-        value = value(triggers[name]);
+        const prevVal = globalState.get(name) ?? "";
+
+        value = value(prevVal);
       }
+      globalState.set(name, value);
 
-      triggers = {
-        ...triggers,
-        [name]: value,
-      };
-
-      emitChange();
+      emitChange(name);
     },
     [name]
   );
@@ -74,3 +84,18 @@ function useTriggerState({ name, initial }: { name: string; initial?: any }) {
 }
 
 export default useTriggerState;
+
+// like localstorage but for our global state
+export const stateStorage = {
+  get(key: string) {
+    return globalState.get(key);
+  },
+  set(key: string, value: any) {
+    globalState.set(key, value);
+    emitChange(key);
+  },
+  remove(key: string) {
+    globalState.removeItem(key);
+    emitChange(key);
+  },
+};
