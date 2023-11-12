@@ -83,7 +83,7 @@
     "webpack": "^5.76.2",
     "webpack-cli": "^5.0.1"
   },
-  "main": "dist/csj/index.js",
+  "main": "dist/esm/index.js",
   "module": "dist/esm/index.js",
   "files": [
     "README.md",
